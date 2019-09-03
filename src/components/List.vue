@@ -9,20 +9,13 @@
 </template>
 
 <script type="text/javascript">
-import eventBus from '../EventBus'
+import Constant from '../Constant'
 
 export default {
-    created: function() {
-        eventBus.$on('add-todo', this.addTodo);
-    },
-    data: function() {
-        return {
-            todolist: [
-                {id: 1, todo: "watch a movie", done: false },
-                {id: 2, todo: "walk", done: true},
-                {id: 3, todo: "study", done: false },
-                {id: 4, todo: "play baseball", done: false },
-            ]
+    name: 'List',
+    computed: {
+        todolist() {
+            return this.$store.state.todolist;
         }
     },
     methods: {
@@ -37,20 +30,11 @@ export default {
                 };
             }
         },
-        addTodo: function(todo) {
-            if (todo !== "") {
-                this.todolist.push(
-                    {id:new Date().getTime(), todo: todo, done:false }
-                );
-            }
-        },
         doneToggle: function(id) {
-            var index = this.todolist.findIndex((item) => item.id === id);
-            this.todolist[index].done = !this.todolist[index].done;
+            this.$store.commit(Constant.DONE_TOGGLE, {id:id});
         },
         deleteTodo: function(id) {
-            var index = this.todolist.findIndex((item) => item.id === id);
-            this.todolist.splice(index, 1);
+            this.$store.commit(Constant.DELETE_TODO, {id:id});
         }
     }
 }
