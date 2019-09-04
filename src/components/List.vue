@@ -10,14 +10,11 @@
 
 <script type="text/javascript">
 import Constant from '../Constant'
+import {mapState, mapMutations} from 'vuex'
 
 export default {
     name: 'List',
-    computed: {
-        todolist() {
-            return this.$store.state.todolist;
-        }
-    },
+    computed: mapState(['todolist']),
     methods: {
         checked: function(done) {
             if (done) {
@@ -30,11 +27,11 @@ export default {
                 };
             }
         },
-        doneToggle: function(id) {
-            this.$store.commit(Constant.DONE_TOGGLE, {id:id});
+        deleteTodo: function(payload) {
+            this.$store.dispatch(Constant.DELETE_TODO, payload);
         },
-        deleteTodo: function(id) {
-            this.$store.commit(Constant.DELETE_TODO, {id:id});
+        doneToggle: function(payload) {
+            this.$store.dispatch(Constant.DONE_TOGGLE, payload);
         }
     }
 }
