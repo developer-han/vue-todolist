@@ -10,7 +10,7 @@
 
 <script type="text/javascript">
 import Constant from '../Constant'
-import {mapState, mapMutations} from 'vuex'
+import {mapState} from 'vuex'
 
 export default {
     name: 'List',
