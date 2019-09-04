@@ -30,16 +30,28 @@ import Home from './Home.vue';
 import About from './About.vue';
 import Contact from './Contact.vue';
 import ContactByNo from './ContactByNo.vue';
+import NotFound from './NotFound.vue';
 
 const router = new VueRouter({
+    mode: 'history', // 매번 페이지 변경(F5)
     routes: [
         {path: '/', component: Home},
         {path: '/home', name:'home', component: Home},
         {path: '/about', name: 'about',  component: About},
         {path: '/contacts', name: 'contacts', component: Contact,
             children: [
-                {path: ':no', name:'contactbyno', component: ContactByNo }
+                {
+                    path: ':no', name:'contactbyno', component: ContactByNo,
+                    beforeEnter: (to, from, next) => {
+                        console.log("@@ beforeEnter!: " + from.path + "--->" + to.path);
+                        if (from.path.startsWith("/contacts"))
+                        next();
+                        else
+                        next("/home");
+                    }
+                 }
         ]},
+        {path: '*', component: NotFound}
     ]
 })
 
