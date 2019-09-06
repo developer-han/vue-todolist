@@ -2,13 +2,18 @@
     "name": "vue-todolistapp",
     "version": "0.1.0",
     "private": true,
+    "main": "index.js",
     "scripts": {
-        "dev": "vue-cli-service serve --open --port 3000",
-        "build": "vue-cli-service build",
-        "lint": "vue-cli-service lint"
+        "_comment_dev": "vue-cli-service serve --open --port 3000",
+        "_comment_build": "vue-cli-service build",
+        "_comment_lint": "vue-cli-service lint",
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate"
     },
     "dependencies": {
-        "bootstrap": "^3.4.1",
+        "bootstrap": "^3.3.7",
         "core-js": "^2.6.5",
         "nuxt": "^1.4.1",
         "vue": "^2.6.10",

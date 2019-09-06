@@ -45,9 +45,9 @@ const router = new VueRouter({
                     beforeEnter: (to, from, next) => {
                         console.log("@@ beforeEnter!: " + from.path + "--->" + to.path);
                         if (from.path.startsWith("/contacts"))
-                        next();
+                            next();
                         else
-                        next("/home");
+                            next("/home");
                     }
                  }
         ]},
